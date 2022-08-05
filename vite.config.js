@@ -1,20 +1,16 @@
-// @ts-check
-import preactRefresh from "@prefresh/vite"
-import { join } from "path"
+import { defineConfig } from "vite"
+import preact from "@preact/preset-vite"
 
-/**
- * @type { import('vite').UserConfig }
- */
-const config = {
-	jsx: "preact",
-	plugins: [preactRefresh()],
+// https://vitejs.dev/config/
+export default defineConfig({
+	plugins: [preact()],
 	alias: {
-		"/@/": join(__dirname, "src"),
 		"react-dom/test-utils": "preact/test-utils",
 		"react/jsx-runtime": "preact/jsx-runtime",
 		"react": "preact/compat",
 		"react-dom": "preact/compat",
 	},
-}
-
-export default config
+	esbuild: {
+		logOverride: { "this-is-undefined-in-esm": "silent" },
+	},
+})

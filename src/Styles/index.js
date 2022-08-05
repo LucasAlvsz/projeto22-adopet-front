@@ -12,6 +12,14 @@ export default createGlobalStyle`
         margin: 0;
         word-break: break-word;
     }
+
+    main {
+	    width: 100%;
+	    height: 100vh;
+	    display: flex;
+	    flex-direction: column;
+	    align-items: center;
+    }
     
     button {
         cursor: pointer;

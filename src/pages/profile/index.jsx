@@ -2,7 +2,7 @@ import * as S from "./styles"
 
 const Profile = () => {
 	return (
-		<S.Main>
+		<main>
 			<S.Pictures>
 				<S.Options>
 					<div></div>
@@ -16,7 +16,7 @@ const Profile = () => {
 			<S.Infos>
 				<S.HeaderInfos>
 					<span>
-						<h2>Amber</h2>
+						<h2>Amberr</h2>
 						<p>Brasília - DF</p>
 					</span>
 					<div></div>
@@ -57,7 +57,7 @@ const Profile = () => {
 					<button>Adopt Me</button>
 				</S.Footer>
 			</S.Infos>
-		</S.Main>
+		</main>
 	)
 }
 

@@ -1,13 +1,5 @@
 import styled from "styled-components"
 
-export const Main = styled.main`
-	width: 100%;
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-`
-
 export const Options = styled.div`
 	width: 100%;
 	display: flex;
@@ -79,8 +71,8 @@ export const PetCharacteristics = styled.div`
 	height: 80px;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	margin-top: 25px;
+	justify-content: space-around;
+	margin-top: 30px;
 	> div:nth-child(1) {
 		background-color: #d4f0b2;
 	}
@@ -116,10 +108,10 @@ export const OwnerInfos = styled.div`
 	align-items: center;
 	position: relative;
 
-	margin-top: 15px;
+	margin-top: 25px;
 	> img {
-		width: 70px;
-		height: 70px;
+		width: 60px;
+		height: 60px;
 		border-radius: 40px;
 		object-fit: cover;
 		margin-top: 5px;
@@ -151,7 +143,7 @@ export const OwnerInfos = styled.div`
 export const About = styled.div`
 	width: 100%;
 	height: 100%;
-	margin-top: 15px;
+	margin-top: 25px;
 `
 
 export const Footer = styled.footer`
