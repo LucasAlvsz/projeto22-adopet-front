@@ -1,5 +1,7 @@
+import { AuthProvider } from "./AuthProvider"
+
 const AppProvider = ({ children }) => {
-	return { children }
+	return <AuthProvider>{children}</AuthProvider>
 }
 
 export default AppProvider

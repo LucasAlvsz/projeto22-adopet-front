@@ -1,6 +1,10 @@
 import * as S from "./styles"
 
 const Discover = () => {
+	const teste = navigator.geolocation.getCurrentPosition(position => {
+		console.log(position)
+	})
+
 	return (
 		<main>
 			<S.Discover>
@@ -17,9 +21,15 @@ const Discover = () => {
 						</span>
 					</S.ContentInfos>
 					<S.ButtonsContainer>
-						<button>🍕</button>
-						<button>🍔</button>
-						<button>🍟</button>
+						<button>
+							❌<p>Nope</p>
+						</button>
+						<button>
+							🐶<p>Profile</p>
+						</button>
+						<button>
+							💗<p>Like</p>
+						</button>
 					</S.ButtonsContainer>
 				</S.Content>
 			</S.Discover>

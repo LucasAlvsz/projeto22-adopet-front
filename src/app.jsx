@@ -5,10 +5,10 @@ import Styles from "./Styles"
 
 const App = () => {
 	return (
-		<>
+		<AppProvider>
 			<Styles />
 			<Router />
-		</>
+		</AppProvider>
 	)
 }
 

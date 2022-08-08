@@ -1,17 +1,23 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import Auth from "../pages/Auth"
 import Discover from "../pages/Discover"
 import Home from "../pages/Home"
 import Profile from "../pages/profile"
+
+import PrivateRoutes from "./PrivateRoutes"
 
 const Router = () => {
 	console.log(import.meta.env.VITE_SOME_KEY)
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<Discover/>} />
-				<Route path="/profile" element={<Profile />} />
-				<Route path="/contact" element={<Contact />} />
-				<Route path="/*" element={<NotFound />} />
+				<Route path="/" element={<Navigate to="/signin" />} />
+				<Route path="/signin" element={<Auth />} />
+				<Route path="/signup" element={<Auth />} />
+				<Route element={<PrivateRoutes />}>
+					<Route path="/profile" element={<Profile />} />
+					<Route path="/discover" element={<Discover />} />
+				</Route>
 			</Routes>
 		</BrowserRouter>
 	)

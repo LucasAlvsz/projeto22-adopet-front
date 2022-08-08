@@ -76,11 +76,19 @@ export const ButtonsContainer = styled.div`
 	button {
 		width: 70px;
 		height: 100%;
-		font-size: 20px;
+		font-size: 25px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		border-radius: 35px;
 		background-color: #fff;
+		position: relative;
+		p {
+			position: absolute;
+			bottom: -22px;
+			color: #000;
+			font-size: 16px;
+			font-weight: 700;
+		}
 	}
 `

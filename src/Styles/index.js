@@ -19,13 +19,14 @@ export default createGlobalStyle`
 	    display: flex;
 	    flex-direction: column;
 	    align-items: center;
+        /* justify-content: center; */
     }
     
     button {
         cursor: pointer;
     }
     html, body, #root {
-        background-color:#333333;
+        background-color:#fff;
     }
     :root {
         --primary-color: #F2F4F3;
