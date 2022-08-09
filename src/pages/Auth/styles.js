@@ -64,3 +64,12 @@ export const Form = styled.form`
 		margin-top: 40px;
 	}
 `
+
+export const ErrorWarning = styled.p`
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 18px;
+	text-align: center;
+	color: tomato;
+	margin-top: 36px;
+`
