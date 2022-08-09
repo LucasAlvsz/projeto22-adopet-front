@@ -32,6 +32,7 @@ export const Infos = styled.div`
 	height: calc(100vh - 270px);
 	display: flex;
 	flex-direction: column;
+	overflow: auto; //TODO personalizar barra de rolagem
 	padding: 25px;
 	border-radius: 38px 38px 0 0;
 	position: absolute;
@@ -144,6 +145,7 @@ export const About = styled.div`
 	width: 100%;
 	height: 100%;
 	margin-top: 25px;
+	margin-bottom: 60px;
 `
 
 export const Footer = styled.footer`

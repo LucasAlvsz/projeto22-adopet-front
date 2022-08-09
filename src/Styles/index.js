@@ -19,6 +19,7 @@ export default createGlobalStyle`
 	    display: flex;
 	    flex-direction: column;
 	    align-items: center;
+        overflow: auto;
         /* justify-content: center; */
     }
     

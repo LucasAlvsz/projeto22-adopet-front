@@ -1,6 +1,24 @@
+import { useContext, useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+
+import { PetsContext } from "../../providers/PetsProvider"
+
+import noProfilePic from "../../assets/images/noProfilePic.png"
+
 import * as S from "./styles"
 
 const Profile = () => {
+	const { id } = useParams()
+	const { getProfileById } = useContext(PetsContext)
+	const [petProfile, setPetProfile] = useState({})
+	const [currentPic, setCurrentPic] = useState(0)
+
+	useEffect(() => {
+		getProfileById(id)
+			.then(({ data }) => setPetProfile(data))
+			.catch(({ response }) => console.log(response.data))
+	}, [])
+
 	return (
 		<main>
 			<S.Pictures>
@@ -8,51 +26,61 @@ const Profile = () => {
 					<div></div>
 					<div></div>
 				</S.Options>
-				<img
-					src="https://i.pinimg.com/564x/9e/96/dd/9e96ddd31a43bfe9914b34168fc7cee4.jpg"
-					alt=""
-				/>
+				{petProfile.petPictures && (
+					<img src={petProfile.petPictures[currentPic].picture.url} />
+				)}
 			</S.Pictures>
 			<S.Infos>
 				<S.HeaderInfos>
 					<span>
-						<h2>Amberr</h2>
+						<h2>{petProfile.name}</h2>
 						<p>Brasília - DF</p>
 					</span>
-					<div></div>
 				</S.HeaderInfos>
 				<S.PetCharacteristics>
 					<S.CharacteristicContainer>
-						<h4>Male</h4>
+						<h4>{petProfile.sex}</h4>
 						<p>Sex</p>
 					</S.CharacteristicContainer>
 					<S.CharacteristicContainer>
-						<h4>1 Years</h4>
+						<h4>
+							{(Number.isInteger(petProfile.age / 30 / 12) &&
+								petProfile.age / 30 / 12 + " Years") ||
+								(Number.isInteger(petProfile.age / 30) &&
+									petProfile.age / 30 + " Months") ||
+								petProfile.age + " Days"}
+						</h4>
 						<p>Age</p>
 					</S.CharacteristicContainer>
 					<S.CharacteristicContainer>
-						<h4>10 kg</h4>
+						<h4>
+							{(Number.isInteger(petProfile.weight / 1000) &&
+								petProfile.weight + " kg") ||
+								petProfile.weight + " g"}
+						</h4>
 						<p>Weight</p>
 					</S.CharacteristicContainer>
 				</S.PetCharacteristics>
 				<S.OwnerInfos>
 					<img
-						src="https://i.pinimg.com/originals/5a/39/3d/5a393d60dab143a9521500b29d5edad6.jpg"
-						alt=""
+						src={
+							petProfile.ownerUser?.picUrl
+								? petProfile.ownerUser.picUrl
+								: noProfilePic
+						}
+						alt="user profile pic"
 					/>
 					<div>
-						<h4>Jacobs</h4>
-						<p>Amber Owner</p>
+						<h4>{petProfile.ownerUser?.name}</h4>
+						<p>{petProfile.name} Owner</p>
 					</div>
 					<span>
 						<div></div>
 						<div></div>
 					</span>
 				</S.OwnerInfos>
-				<S.About>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-					Lorem ipsum dolor sit amet, consectetur adip
-				</S.About>
+				<S.About>{petProfile.about}</S.About>
+				<br />
 				<S.Footer>
 					<button>Adopt Me</button>
 				</S.Footer>
