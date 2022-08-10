@@ -145,14 +145,14 @@ export const About = styled.div`
 	width: 100%;
 	height: 100%;
 	margin-top: 25px;
-	margin-bottom: 60px;
+	margin-bottom: 35px;
 `
 
 export const Footer = styled.footer`
 	width: calc(100% - 50px);
 	height: 50px;
 	position: fixed;
-	bottom: 20px;
+	bottom: 25px;
 	button {
 		width: 100%;
 		height: 50px;

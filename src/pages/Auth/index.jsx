@@ -83,17 +83,31 @@ const Auth = () => {
 					onChange={e => setUserData({ ...userData, password: e.target.value })}
 				/>
 				{authPath === "signUp" && (
-					<input
-						type="password"
-						placeholder="Confirm password"
-						required
-						onChange={e => {
-							e.target.value !== userData.password
-								? setErrorWarning("Passwords don't match")
-								: setErrorWarning("")
-							setUserData({ ...userData, confirmPassword: e.target.value })
-						}}
-					/>
+					<>
+						<input
+							type="password"
+							placeholder="Confirm password"
+							required
+							onChange={e => {
+								e.target.value !== userData.password
+									? setErrorWarning("Passwords don't match")
+									: setErrorWarning("")
+								setUserData({ ...userData, confirmPassword: e.target.value })
+							}}
+						/>
+						<input
+							type="text"
+							placeholder="CEP"
+							required
+							pattern="[0-9]{5}-[0-9]{3}"
+							value={userData.cep}
+							maxLength="8"
+							onChange={e => {
+								e.target.value = e.target.value.replace(/[^0-9]/g, "")
+								setUserData({ ...userData, cep: e.target.value })
+							}}
+						/>
+					</>
 				)}
 				{errorWarning && <S.ErrorWarning>{errorWarning}</S.ErrorWarning>}
 				<button type="submit">{authPath === "signIn" ? "Sign In" : "Sign Up"}</button>

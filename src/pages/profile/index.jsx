@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 
 import { PetsContext } from "../../providers/PetsProvider"
 
@@ -9,9 +9,19 @@ import * as S from "./styles"
 
 const Profile = () => {
 	const { id } = useParams()
+	const navigate = useNavigate()
 	const { getProfileById } = useContext(PetsContext)
 	const [petProfile, setPetProfile] = useState({})
 	const [currentPic, setCurrentPic] = useState(0)
+
+	const updateCurrentPic = (() => {
+		if (currentPic === "paused") return
+		setTimeout(() => {
+			petProfile.petPictures?.length - 1 <= currentPic
+				? setCurrentPic(0)
+				: setCurrentPic(currentPic + 1)
+		}, 5000)
+	})()
 
 	useEffect(() => {
 		getProfileById(id)
@@ -23,7 +33,7 @@ const Profile = () => {
 		<main>
 			<S.Pictures>
 				<S.Options>
-					<div></div>
+					<div onClick={() => navigate(-1)}></div>
 					<div></div>
 				</S.Options>
 				{petProfile.petPictures && (
