@@ -23,6 +23,16 @@ const Profile = () => {
 			.catch(({ response }) => console.log(response.data))
 	}, [])
 
+	const handdleAdopt = () => {
+		const phone = petProfile.ownerUser.phone.replace(/\D/g, "")
+		const message =
+			"Olá, gostaria de adotar o pet " +
+			petProfile.name +
+			".\n" +
+			petProfile.petPictures[currentPic].picture.url
+		window.open(`https://wa.me/55${phone}?text=` + encodeURIComponent(message))
+	}
+
 	return (
 		<main>
 			<Header />
@@ -101,7 +111,7 @@ const Profile = () => {
 				<S.About>{petProfile.about}</S.About>
 				<br />
 				<S.Footer>
-					<button>Adopt Me</button>
+					<button onClick={handdleAdopt}>Adopt Me</button>
 				</S.Footer>
 			</S.Infos>
 		</main>

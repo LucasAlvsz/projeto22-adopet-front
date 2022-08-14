@@ -6,6 +6,11 @@ export const OptionIcon = {
 	color: "black",
 }
 
+export const LogOutIcon = {
+	width: "18px",
+	height: "18px",
+}
+
 export const Options = styled.div`
 	width: 100%;
 	display: flex;
@@ -19,6 +24,31 @@ export const Options = styled.div`
 		display: flex;
 		justify-content: center;
 		border-radius: 20px;
-		background-color: #f2f4f3;
+		background-color: #fff;
+		:nth-child(2) {
+			${({ openMenu }) => openMenu && "border-radius: 20px 20px 0 0;"}
+		}
 	}
+`
+
+export const Menu = styled.div`
+	width: 35px;
+	height: 50px;
+	position: absolute;
+	top: 30px;
+	right: 10px;
+	z-index: 3;
+	display: flex;
+	align-items: center;
+	border-radius: 0 0 20px 20px;
+	background-color: #fff;
+	> span {
+		width: 100%;
+		height: 25px;
+		display: flex;
+		align-items: end;
+		justify-content: center;
+		cursor: pointer;
+	}
+	transition: all 2s ease;
 `

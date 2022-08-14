@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 
 import { PetsContext } from "../../providers/PetsProvider"
 
+import Header from "../../components/Header"
 import PetFrame from "../../components/PetFrame"
 import Footer from "../../components/Footer"
 import Filters from "../../components/Filters"
@@ -17,9 +18,10 @@ const Discover = () => {
 			.then(({ data }) => setPets(data))
 			.catch(({ response }) => console.log(response.data))
 	}, [])
-	console.log(pets)
+
 	return (
 		<main>
+			<Header />
 			<S.Discover>
 				<Filters
 					getPets={filters =>
