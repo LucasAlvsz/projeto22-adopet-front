@@ -8,7 +8,15 @@ export const PetsContext = createContext()
 
 export const PetsProvider = ({ children }) => {
 	const [pets, setPets] = useState([])
+	const [likedPets, setLikedPets] = useState([])
 	const { user } = useContext(AuthContext)
+
+	const headers = {
+		headers: {
+			Authorization: `Bearer ${user.token}`,
+		},
+	}
+
 	const getPets = filters => {
 		const formatedFilters = formatFilters(filters)
 		return axios.get(`${import.meta.env.VITE_API_URL}/pets?${formatedFilters}`, {
@@ -24,6 +32,14 @@ export const PetsProvider = ({ children }) => {
 				Authorization: `Bearer ${user.token}`,
 			},
 		})
+	}
+
+	const getLikedPets = filters => {
+		const formatedFilters = formatFilters(filters)
+		return axios.get(
+			`${import.meta.env.VITE_API_URL}/pets/interested?${formatedFilters}`,
+			headers
+		)
 	}
 
 	const addNotInterestedPet = petId => {
@@ -47,8 +63,11 @@ export const PetsProvider = ({ children }) => {
 			value={{
 				pets,
 				setPets,
+				likedPets,
+				setLikedPets,
 				getPets,
 				getProfileById,
+				getLikedPets,
 				addNotInterestedPet,
 				addInterestedPet,
 			}}>

@@ -18,10 +18,6 @@ const Filters = ({ getPets }) => {
 		setApllyFilters(filters)
 	}, [])
 
-	const handleApllyFilters = () => {
-		getPets(filters)
-	}
-
 	return (
 		<S.Filters>
 			<p>Filters:</p>
@@ -71,7 +67,7 @@ const Filters = ({ getPets }) => {
 				<p
 					onClick={() => {
 						setApllyFilters(filters)
-						handleApllyFilters(filters)
+						getPets(filters)
 					}}>
 					Ok
 				</p>
