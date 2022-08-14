@@ -8,5 +8,11 @@ export const Discover = styled.div`
 	align-items: center;
 	justify-content: center;
 	padding: 20px;
-	background-color: lightcoral;
+	background-color: #f2f4f3;
+`
+
+export const Container = styled.div`
+	width: 100%;
+	height: 75%;
+	margin-bottom: 65px;
 `

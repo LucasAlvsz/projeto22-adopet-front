@@ -61,7 +61,7 @@ export const Form = styled.form`
 		width: 150px;
 		height: 50px;
 		border-radius: 20px;
-		margin-top: 40px;
+		margin-top: 20px;
 	}
 `
 
@@ -71,5 +71,5 @@ export const ErrorWarning = styled.p`
 	line-height: 18px;
 	text-align: center;
 	color: tomato;
-	margin-top: 36px;
+	margin-top: 10px;
 `

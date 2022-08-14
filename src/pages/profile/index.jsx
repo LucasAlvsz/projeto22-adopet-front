@@ -1,27 +1,21 @@
 import { useContext, useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
 import { PetsContext } from "../../providers/PetsProvider"
 
+import Header from "../../components/Header"
+
 import noProfilePic from "../../assets/images/noProfilePic.png"
+import { MdOutlineNavigateNext as NextIcon, MdNavigateBefore as BeforeIcon } from "react-icons/md"
 
 import * as S from "./styles"
 
 const Profile = () => {
 	const { id } = useParams()
-	const navigate = useNavigate()
+
 	const { getProfileById } = useContext(PetsContext)
 	const [petProfile, setPetProfile] = useState({})
 	const [currentPic, setCurrentPic] = useState(0)
-
-	const updateCurrentPic = (() => {
-		if (currentPic === "paused") return
-		setTimeout(() => {
-			petProfile.petPictures?.length - 1 <= currentPic
-				? setCurrentPic(0)
-				: setCurrentPic(currentPic + 1)
-		}, 5000)
-	})()
 
 	useEffect(() => {
 		getProfileById(id)
@@ -31,10 +25,25 @@ const Profile = () => {
 
 	return (
 		<main>
+			<Header />
 			<S.Pictures>
-				<S.Options>
-					<div onClick={() => navigate(-1)}></div>
-					<div></div>
+				<S.Options firstImage={currentPic === 0 && true}>
+					{currentPic >= 1 && (
+						<BeforeIcon
+							style={S.PictureOptions}
+							onClick={() => setCurrentPic(currentPic - 1)}
+						/>
+					)}
+					{petProfile.petPictures?.length > 1 && (
+						<NextIcon
+							style={S.PictureOptions}
+							onClick={() =>
+								petProfile.petPictures.length - 1 > currentPic
+									? setCurrentPic(currentPic + 1)
+									: setCurrentPic(0)
+							}
+						/>
+					)}
 				</S.Options>
 				{petProfile.petPictures && (
 					<img src={petProfile.petPictures[currentPic].picture.url} />
@@ -84,10 +93,10 @@ const Profile = () => {
 						<h4>{petProfile.ownerUser?.name}</h4>
 						<p>{petProfile.name} Owner</p>
 					</div>
-					<span>
+					{/* <span>
 						<div></div>
 						<div></div>
-					</span>
+					</span> */}
 				</S.OwnerInfos>
 				<S.About>{petProfile.about}</S.About>
 				<br />

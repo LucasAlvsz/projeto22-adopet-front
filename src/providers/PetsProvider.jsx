@@ -2,14 +2,16 @@ import axios from "axios"
 import { createContext, useState, useContext } from "react"
 
 import { AuthContext } from "./AuthProvider"
+import formatFilters from "../utils/formatFiltersUtils"
 
 export const PetsContext = createContext()
 
 export const PetsProvider = ({ children }) => {
 	const [pets, setPets] = useState([])
 	const { user } = useContext(AuthContext)
-	const getPets = (filter = "") => {
-		return axios.get(`${import.meta.env.VITE_API_URL}/pets?filter=${filter}`, {
+	const getPets = filters => {
+		const formatedFilters = formatFilters(filters)
+		return axios.get(`${import.meta.env.VITE_API_URL}/pets?${formatedFilters}`, {
 			headers: {
 				Authorization: `Bearer ${user.token}`,
 			},
@@ -32,6 +34,14 @@ export const PetsProvider = ({ children }) => {
 		})
 	}
 
+	const addInterestedPet = petId => {
+		return axios.post(`${import.meta.env.VITE_API_URL}/pets/${petId}/interested`, "", {
+			headers: {
+				Authorization: `Bearer ${user.token}`,
+			},
+		})
+	}
+
 	return (
 		<PetsContext.Provider
 			value={{
@@ -40,6 +50,7 @@ export const PetsProvider = ({ children }) => {
 				getPets,
 				getProfileById,
 				addNotInterestedPet,
+				addInterestedPet,
 			}}>
 			{children}
 		</PetsContext.Provider>

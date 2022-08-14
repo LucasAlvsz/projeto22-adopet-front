@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Auth from "../pages/Auth"
+import Chat from "../pages/Chat"
 import Discover from "../pages/Discover"
 import Home from "../pages/Home"
 import Profile from "../pages/profile"

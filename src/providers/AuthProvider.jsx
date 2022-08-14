@@ -6,11 +6,13 @@ export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
 	const [user, setUser] = useLocalStorage("user", null)
-	const signUp = (name, email, password) => {
+	const signUp = (name, email, password, cep, phone) => {
 		return axios.post(`${import.meta.env.VITE_API_URL}/sign-up`, {
 			name,
 			email,
 			password,
+			cep,
+			phone,
 		})
 	}
 

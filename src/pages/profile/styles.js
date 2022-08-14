@@ -1,30 +1,33 @@
 import styled from "styled-components"
 
-export const Options = styled.div`
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	position: absolute;
-	top: 10px;
-	padding: 25px;
-	> div {
-		z-index: 2;
-		width: 35px;
-		height: 35px;
-		border-radius: 12px;
-		background-color: gray;
-	}
-`
+export const PictureOptions = {
+	width: "27px",
+	height: "27px",
+	backgroundColor: "white",
+	borderRadius: "50%",
+}
 
 export const Pictures = styled.div`
 	width: 100%;
 	height: 300px;
 	background-color: green;
+	position: relative;
 	> img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 	}
+`
+
+export const Options = styled.div`
+	width: 100%;
+	height: auto;
+	position: absolute;
+	top: 35%;
+	justify-content: ${({ firstImage }) => (firstImage ? "flex-end" : "space-between")};
+	display: flex;
+	z-index: 1;
+	padding: 0 10px;
 `
 
 export const Infos = styled.div`
@@ -37,7 +40,7 @@ export const Infos = styled.div`
 	border-radius: 38px 38px 0 0;
 	position: absolute;
 	top: 270px;
-	background-color: #ffffff;
+	background-color: #f2f4f3;
 `
 
 export const HeaderInfos = styled.div`
@@ -75,13 +78,13 @@ export const PetCharacteristics = styled.div`
 	justify-content: space-around;
 	margin-top: 30px;
 	> div:nth-child(1) {
-		background-color: #d4f0b2;
+		background-color: #90dfaa;
 	}
 	> div:nth-child(2) {
-		background-color: #ffe9c2;
+		background-color: #ef7ba9;
 	}
 	> div:nth-child(3) {
-		background-color: #c2ebff;
+		background-color: #00aef0;
 	}
 `
 

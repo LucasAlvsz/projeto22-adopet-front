@@ -28,7 +28,7 @@ const Auth = () => {
 				.catch(({ response }) => setErrorWarning(response.data))
 		}
 		if (authPath === "signUp") {
-			signUp(userData.name, userData.email, userData.password)
+			signUp(userData.name, userData.email, userData.password, userData.cep, userData.phone)
 				.then(() => {
 					setUserData({ ...userData, password: "" })
 					setAuthPath("signIn")
@@ -45,6 +45,7 @@ const Auth = () => {
 					className={authPath === "signIn" && "active"}
 					onClick={() => {
 						setErrorWarning("")
+						setUserData({ ...userData, password: "" })
 						setAuthPath("signIn")
 					}}>
 					SignIn
@@ -53,6 +54,7 @@ const Auth = () => {
 					className={authPath === "signUp" && "active"}
 					onClick={() => {
 						setErrorWarning("")
+						setUserData({ ...userData, password: "" })
 						setAuthPath("signUp")
 					}}>
 					SignUp
@@ -64,6 +66,7 @@ const Auth = () => {
 						type="text"
 						placeholder="Name"
 						required
+						value={userData.name}
 						onChange={e => setUserData({ ...userData, name: e.target.value })}
 					/>
 				)}
@@ -97,9 +100,21 @@ const Auth = () => {
 						/>
 						<input
 							type="text"
+							placeholder="Phone number"
+							required
+							value={userData.phone}
+							maxLength="15"
+							onChange={e => {
+								e.target.value = e.target.value.replace(/[^0-9]/g, "")
+								e.target.value = e.target.value.replace(/(\d{2})(\d)/, "($1) $2")
+								e.target.value = e.target.value.replace(/(\d{5})(\d)/, "$1-$2")
+								setUserData({ ...userData, phone: e.target.value })
+							}}
+						/>
+						<input
+							type="text"
 							placeholder="CEP"
 							required
-							pattern="[0-9]{5}-[0-9]{3}"
 							value={userData.cep}
 							maxLength="8"
 							onChange={e => {

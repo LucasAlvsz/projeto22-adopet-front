@@ -1,9 +1,11 @@
 import { defineConfig } from "vite"
 import preact from "@preact/preset-vite"
+import svgr from "@honkhonk/vite-plugin-svgr"
 
 // https://vitejs.dev/config/
+// prettier-ignore
 export default defineConfig({
-	plugins: [preact()],
+	plugins: [svgr(), preact()],
 	alias: {
 		"react-dom/test-utils": "preact/test-utils",
 		"react/jsx-runtime": "preact/jsx-runtime",
