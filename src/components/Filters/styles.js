@@ -5,7 +5,8 @@ export const HeaderIcons = {
 	height: "25px",
 }
 
-export const Header = styled.header`
+export const Filters = styled.header`
+	z-index: 4;
 	width: auto;
 	height: 40px;
 	position: fixed;

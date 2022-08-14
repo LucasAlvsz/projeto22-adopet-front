@@ -10,6 +10,7 @@ const Filters = ({ getPets }) => {
 	const [filters, setFilters] = useState({
 		type: "",
 		vaccinated: "",
+		location: "",
 	})
 	const [apllyFilters, setApllyFilters] = useState()
 
@@ -22,7 +23,7 @@ const Filters = ({ getPets }) => {
 	}
 
 	return (
-		<S.Header>
+		<S.Filters>
 			<p>Filters:</p>
 
 			<DogIcon
@@ -58,14 +59,15 @@ const Filters = ({ getPets }) => {
 			<LocationIcon
 				style={S.HeaderIcons}
 				onClick={() =>
-					filters.location === "location"
+					filters.location === "true"
 						? setFilters({ ...filters, location: "" })
-						: setFilters({ ...filters, location: "location" })
+						: setFilters({ ...filters, location: "true" })
 				}
-				className={filters.location === "location" && "selected"}
+				className={filters.location === "true" && "selected"}
 			/>
 			{apllyFilters?.type !== filters.type ||
-			apllyFilters?.vaccinated !== filters.vaccinated ? (
+			apllyFilters?.vaccinated !== filters.vaccinated ||
+			apllyFilters?.location !== filters.location ? (
 				<p
 					onClick={() => {
 						setApllyFilters(filters)
@@ -76,7 +78,7 @@ const Filters = ({ getPets }) => {
 			) : (
 				""
 			)}
-		</S.Header>
+		</S.Filters>
 	)
 }
 
