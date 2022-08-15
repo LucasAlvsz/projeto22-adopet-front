@@ -1,13 +1,23 @@
 import styled from "styled-components"
 
+export const InfoIcon = {
+	color: "#fff",
+	fontSize: "15px",
+}
+
+export const VaccineIcon = {
+	width: "30px",
+	height: "30px",
+	color: "#fff",
+}
+
 export const Content = styled.div`
 	width: 100%;
-	height: 100%; //CHAGE 100%;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
 	position: relative;
 	border-radius: 30px;
-	background-color: blue;
 	img {
 		width: 100%;
 		height: 100%;
@@ -32,6 +42,23 @@ export const ContentInfos = styled.div`
 	}
 `
 
+export const VaccineIconContainer = styled.div`
+	width: 33px;
+	height: 33px;
+	position: absolute;
+	bottom: 85px;
+	right: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 25px;
+	background-color: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(15px);
+	-webkit-backdrop-filter: blur(15px);
+	border: 2px solid #fff;
+	padding: 5px;
+`
+
 export const Title = styled.h1`
 	font-size: 25px;
 	font-weight: 700;
@@ -49,9 +76,10 @@ export const InfoContainer = styled.div`
 	backdrop-filter: blur(15px);
 	-webkit-backdrop-filter: blur(15px);
 	> p {
-		font-size: 17px;
+		font-size: 15px;
 		font-weight: 700;
 		color: white;
+		margin: 0 5px;
 	}
 `
 
@@ -82,9 +110,10 @@ export const ButtonsContainer = styled.div`
 		p {
 			position: absolute;
 			bottom: -22px;
-			color: #000;
+			color: #2d3051;
 			font-size: 16px;
 			font-weight: 700;
+			font-family: "Roboto", sans-serif;
 		}
 	}
 `

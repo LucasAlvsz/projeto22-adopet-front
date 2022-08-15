@@ -1,5 +1,15 @@
+import Footer from "../../components/Footer"
+import Header from "../../components/Header"
+import WorkingInProgress from "../../components/WorkingInProgress"
+
 const Home = () => {
-	return <div></div>
+	return (
+		<main>
+			<Header />
+			<WorkingInProgress />
+			<Footer />
+		</main>
+	)
 }
 
 export default Home

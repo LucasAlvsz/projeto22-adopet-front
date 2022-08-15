@@ -21,6 +21,7 @@ export const Footer = styled.footer`
 	transition: all 0.3s ease-out;
 	box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
 	padding: 25px 35px;
+	background-color: #fff;
 	> span {
 		display: flex;
 		align-items: center;

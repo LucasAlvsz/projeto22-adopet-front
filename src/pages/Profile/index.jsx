@@ -108,7 +108,9 @@ const Profile = () => {
 						<div></div>
 					</span> */}
 				</S.OwnerInfos>
-				<S.About>{petProfile.about}</S.About>
+				<S.About>
+					<p> {petProfile.about}</p>
+				</S.About>
 				<br />
 				<S.Footer>
 					<button onClick={handdleAdopt}>Adopt Me</button>

@@ -35,12 +35,15 @@ export const Infos = styled.div`
 	height: calc(100vh - 270px);
 	display: flex;
 	flex-direction: column;
-	overflow: auto; //TODO personalizar barra de rolagem
+	overflow: auto;
 	padding: 25px;
 	border-radius: 38px 38px 0 0;
 	position: absolute;
 	top: 270px;
 	background-color: #f2f4f3;
+	::-webkit-scrollbar {
+		width: 5px;
+	}
 `
 
 export const HeaderInfos = styled.div`
@@ -54,6 +57,8 @@ export const HeaderInfos = styled.div`
 		> h2 {
 			font-size: 26px;
 			font-weight: 700;
+			color: #2d3051;
+			font-family: "DynaPuff", cursive;
 		}
 		> p {
 			font-size: 16px;
@@ -77,6 +82,15 @@ export const PetCharacteristics = styled.div`
 	align-items: center;
 	justify-content: space-around;
 	margin-top: 30px;
+	font-family: "DynaPuff", cursive;
+	color: #2d3051;
+	h4 {
+		font-size: 15px;
+	}
+	p {
+		font-size: 10px;
+		color: #f2f4f3;
+	}
 	> div:nth-child(1) {
 		background-color: #90dfaa;
 	}
@@ -149,6 +163,7 @@ export const About = styled.div`
 	height: 100%;
 	margin-top: 25px;
 	margin-bottom: 35px;
+	font-size: 15px;
 `
 
 export const Footer = styled.footer`
@@ -162,5 +177,7 @@ export const Footer = styled.footer`
 		border-radius: 20px;
 		background-color: lightblue;
 		margin-top: 15px;
+		font-family: "DynaPuff", cursive;
+		color: #2d3051;
 	}
 `

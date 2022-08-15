@@ -20,7 +20,9 @@ export default createGlobalStyle`
 	    flex-direction: column;
 	    align-items: center;
         overflow: auto;
-        /* justify-content: center; */
+        position: relative;
+        font-family: 'Roboto', sans-serif;
+        background-color: #f2f4f3;
     }
     
     button {

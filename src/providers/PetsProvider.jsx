@@ -11,12 +11,6 @@ export const PetsProvider = ({ children }) => {
 	const [likedPets, setLikedPets] = useState([])
 	const { user } = useContext(AuthContext)
 
-	const headers = {
-		headers: {
-			Authorization: `Bearer ${user.token}`,
-		},
-	}
-
 	const getPets = filters => {
 		const formatedFilters = formatFilters(filters)
 		return axios.get(`${import.meta.env.VITE_API_URL}/pets?${formatedFilters}`, {
@@ -36,10 +30,11 @@ export const PetsProvider = ({ children }) => {
 
 	const getLikedPets = filters => {
 		const formatedFilters = formatFilters(filters)
-		return axios.get(
-			`${import.meta.env.VITE_API_URL}/pets/interested?${formatedFilters}`,
-			headers
-		)
+		return axios.get(`${import.meta.env.VITE_API_URL}/pets/interested?${formatedFilters}`, {
+			headers: {
+				Authorization: `Bearer ${user.token}`,
+			},
+		})
 	}
 
 	const addNotInterestedPet = petId => {

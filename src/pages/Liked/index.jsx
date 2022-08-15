@@ -5,6 +5,7 @@ import { PetsContext } from "../../providers/PetsProvider"
 import Header from "../../components/Header"
 import MiniPetFrame from "../../components/MiniPetFrame"
 import Footer from "../../components/Footer"
+import NothingHere from "../../components/NothingHere"
 
 import * as S from "./styles"
 import Filters from "../../components/Filters"
@@ -29,15 +30,16 @@ const Liked = () => {
 				}
 			/>
 			<S.Content>
-				{likedPets?.map(({ pet }) => (
-					<MiniPetFrame
-						key={pet.id}
-						id={pet.id}
-						petName={pet.name}
-						mainPic={pet.petPictures[0].picture.url}
-						adress={pet.ownerUser.adress}
-					/>
-				))}
+				{(likedPets?.length &&
+					likedPets.map(({ pet }) => (
+						<MiniPetFrame
+							key={pet.id}
+							id={pet.id}
+							petName={pet.name}
+							mainPic={pet.petPictures[0].picture.url}
+							adress={pet.ownerUser.adress}
+						/>
+					))) || <NothingHere />}
 			</S.Content>
 			<Footer />
 		</main>

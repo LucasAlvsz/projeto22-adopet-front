@@ -6,6 +6,7 @@ import Header from "../../components/Header"
 import PetFrame from "../../components/PetFrame"
 import Footer from "../../components/Footer"
 import Filters from "../../components/Filters"
+import NothingHere from "../../components/NothingHere"
 
 import * as S from "./styles"
 
@@ -31,7 +32,7 @@ const Discover = () => {
 					}
 				/>
 				<S.Container>
-					{pets.length && currentPet < pets.length && (
+					{(pets.length && currentPet < pets.length && (
 						<PetFrame
 							key={pets[currentPet].id}
 							id={pets[currentPet].id}
@@ -44,7 +45,7 @@ const Discover = () => {
 							mainPic={pets[currentPet].petPictures[0].picture.url}
 							setCurrentPet={currentPic => setCurrentPet(currentPic + currentPet)}
 						/>
-					)}
+					)) || <NothingHere />}
 				</S.Container>
 				<Footer />
 			</S.Discover>

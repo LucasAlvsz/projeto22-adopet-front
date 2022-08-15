@@ -3,25 +3,32 @@ import { useNavigate } from "react-router-dom"
 
 import { PetsContext } from "../../providers/PetsProvider"
 
-import { AiOutlineHeart as HeartIcon } from "react-icons/ai"
+import { IoLocationSharp as LocationIcon } from "react-icons/io5"
+import { TbVaccine as VaccineIcon } from "react-icons/tb"
 
 import DogProfileIcon from "../../assets/icons/dogIcon.png"
 import CatProfileIcon from "../../assets/icons/catIcon.png"
 
 import * as S from "./styles"
 
-const PetFrame = ({ id, petName, type, breed, mainPic, adress, setCurrentPet }) => {
+const PetFrame = ({ id, petName, type, breed, mainPic, vaccinated, adress, setCurrentPet }) => {
 	const navigate = useNavigate()
 	const { addNotInterestedPet, addInterestedPet } = useContext(PetsContext)
 	return (
 		<S.Content>
 			<img src={mainPic} alt={petName + "picture"} />
+			{vaccinated && (
+				<S.VaccineIconContainer>
+					<VaccineIcon style={S.VaccineIcon} />
+				</S.VaccineIconContainer>
+			)}
 			<S.ContentInfos>
 				<S.Title>{petName}</S.Title>
 				<span>
 					<S.InfoContainer>
+						<LocationIcon style={S.InfoIcon} />
 						<p>
-							{adress?.city.name}-{adress.state.name}
+							{adress?.city.name} - {adress.state.name}
 						</p>
 					</S.InfoContainer>
 					<S.InfoContainer>

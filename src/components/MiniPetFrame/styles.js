@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const InfoIcon = {
-	color: "#00aef0",
+	color: "#fff",
 	fontSize: "15px",
 }
 
@@ -20,7 +20,7 @@ export const MiniPetFrame = styled.div`
 `
 
 export const petInfo = styled.div`
-	width: 100%;
+	width: auto;
 	height: auto;
 	position: absolute;
 	top: 10px;
@@ -28,6 +28,7 @@ export const petInfo = styled.div`
 	display: flex;
 	flex-direction: column;
 	color: white;
+
 	> h1 {
 		font-size: 20px;
 		font-weight: 700;
@@ -38,6 +39,11 @@ export const petInfo = styled.div`
 		gap: 5px;
 		font-size: 13px;
 		font-weight: 400;
-		margin-top: 30px;
+		margin-top: 25px;
+		background-color: rgba(255, 255, 255, 0.1);
+		backdrop-filter: blur(15px);
+		-webkit-backdrop-filter: blur(15px);
+		border-radius: 10px;
+		padding: 3px;
 	}
 `
