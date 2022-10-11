@@ -7,17 +7,21 @@ import PetFrame from "../../components/PetFrame"
 import Footer from "../../components/Footer"
 import Filters from "../../components/Filters"
 import NothingHere from "../../components/NothingHere"
+import Loading from "../../components/Loading"
 
 import * as S from "./styles"
 
 const Discover = () => {
 	const { getPets, pets, setPets } = useContext(PetsContext)
 	const [currentPet, setCurrentPet] = useState(0)
+	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
+		setLoading(true)
 		getPets()
 			.then(({ data }) => setPets(data))
 			.catch(({ response }) => console.log(response.data))
+			.finally(() => setLoading(false))
 	}, [])
 
 	return (
@@ -32,19 +36,24 @@ const Discover = () => {
 					}
 				/>
 				<S.Container>
-					{(pets.length && currentPet < pets.length && (
-						<PetFrame
-							key={pets[currentPet].id}
-							id={pets[currentPet].id}
-							petName={pets[currentPet].name}
-							type={pets[currentPet].type}
-							age={pets[currentPet].age}
-							adress={pets[currentPet].ownerUser.adress}
-							vaccinated={pets[currentPet].vaccinated}
-							breed={pets[currentPet].breed.name}
-							mainPic={pets[currentPet].petPictures[0].picture.url}
-							setCurrentPet={currentPic => setCurrentPet(currentPic + currentPet)}
-						/>
+					{(loading ? (
+						<Loading width="50%" height="50%" center="true" />
+					) : (
+						pets.length &&
+						currentPet < pets.length && (
+							<PetFrame
+								key={pets[currentPet].id}
+								id={pets[currentPet].id}
+								petName={pets[currentPet].name}
+								type={pets[currentPet].type}
+								age={pets[currentPet].age}
+								adress={pets[currentPet].ownerUser.adress}
+								vaccinated={pets[currentPet].vaccinated}
+								breed={pets[currentPet].breed.name}
+								mainPic={pets[currentPet].petPictures[0].picture.url}
+								setCurrentPet={currentPic => setCurrentPet(currentPic + currentPet)}
+							/>
+						)
 					)) || <NothingHere />}
 				</S.Container>
 				<Footer />

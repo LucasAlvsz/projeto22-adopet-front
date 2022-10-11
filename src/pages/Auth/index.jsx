@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { Player } from "@lottiefiles/react-lottie-player"
 
 import { AuthContext } from "../../providers/AuthProvider"
+import Loading from "../../components/Loading"
 import adopt from "../../assets/animations/adopt.json"
 
 import * as S from "./styles"
@@ -12,6 +13,7 @@ const Auth = () => {
 	const { signIn, signUp, user, setUser } = useContext(AuthContext)
 	const [userData, setUserData] = useState({})
 	const [authPath, setAuthPath] = useState("signIn")
+	const [loading, setLoading] = useState(false)
 	const [errorWarning, setErrorWarning] = useState("")
 
 	useEffect(() => {
@@ -20,6 +22,7 @@ const Auth = () => {
 
 	const handleSubmit = e => {
 		e.preventDefault()
+		setLoading(true)
 		setErrorWarning("")
 		if (authPath === "signIn") {
 			signIn(userData.email, userData.password)
@@ -28,14 +31,15 @@ const Auth = () => {
 					navigate("/discover")
 				})
 				.catch(({ response }) => setErrorWarning(response.data))
-		}
-		if (authPath === "signUp") {
+				.finally(() => setLoading(false))
+		} else if (authPath === "signUp") {
 			signUp(userData.name, userData.email, userData.password, userData.cep, userData.phone)
 				.then(() => {
 					setUserData({ ...userData, password: "" })
 					setAuthPath("signIn")
 				})
 				.catch(({ response }) => setErrorWarning(response.data))
+				.finally(() => setLoading(false))
 		}
 	}
 
@@ -131,7 +135,9 @@ const Auth = () => {
 						</>
 					)}
 					{errorWarning && <S.ErrorWarning>{errorWarning}</S.ErrorWarning>}
-					<button type="submit">{authPath === "signIn" ? "Sign In" : "Sign Up"}</button>
+					<button type="submit">
+						{loading ? <Loading /> : authPath === "signIn" ? "Sign In" : "Sign Up"}
+					</button>
 				</S.Form>
 				<S.AnimationContainer>
 					<Player autoplay loop src={adopt} style={{ height: "100%", width: "100%" }} />
