@@ -77,6 +77,7 @@ export const HeaderInfos = styled.div`
 
 export const PetCharacteristics = styled.div`
 	width: 100%;
+	max-width: 400px;
 	height: 80px;
 	display: flex;
 	align-items: center;
@@ -169,10 +170,13 @@ export const About = styled.div`
 export const Footer = styled.footer`
 	width: calc(100% - 50px);
 	height: 50px;
+	display: flex;
+	justify-content: center;
 	position: fixed;
 	bottom: 25px;
 	button {
 		width: 100%;
+		max-width: 300px;
 		height: 50px;
 		border-radius: 20px;
 		background-color: lightblue;
