@@ -78,9 +78,12 @@ export const Form = styled.form`
 		filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 		margin-bottom: 15px;
 		padding: 10px;
-		&::placeholder {
+		&:disabled {
+			background-color: #e6e6e6;
+			pointer-events: none;
 		}
 	}
+
 	button {
 		width: 150px;
 		height: 50px;
@@ -92,12 +95,15 @@ export const Form = styled.form`
 		:hover {
 			background-color: #f1f2f3;
 		}
+		&:disabled {
+			pointer-events: none;
+		}
 	}
 `
 
 export const ErrorWarning = styled.p`
 	z-index: 3;
-	font-weight: 400;
+	font-weight: 700;
 	font-size: 15px;
 	line-height: 18px;
 	text-align: center;

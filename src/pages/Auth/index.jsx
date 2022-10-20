@@ -14,7 +14,7 @@ const Auth = () => {
 	const [userData, setUserData] = useState({})
 	const [authPath, setAuthPath] = useState("signIn")
 	const [loading, setLoading] = useState(false)
-	const [errorWarning, setErrorWarning] = useState("")
+	const [errorWarning, setErrorWarning] = useState(false)
 
 	useEffect(() => {
 		if (user) navigate("/discover")
@@ -38,7 +38,11 @@ const Auth = () => {
 					setUserData({ ...userData, password: "" })
 					setAuthPath("signIn")
 				})
-				.catch(({ response }) => setErrorWarning(response.data))
+				.catch(({ response }) =>
+					response.data[0].split(" ")[0] === '"body.phone"'
+						? setErrorWarning("Invalid Phone")
+						: setErrorWarning(response.data)
+				)
 				.finally(() => setLoading(false))
 		}
 	}
@@ -51,28 +55,33 @@ const Auth = () => {
 					<h2
 						className={authPath === "signIn" && "active"}
 						onClick={() => {
-							setErrorWarning("")
-							setUserData({ ...userData, password: "" })
-							setAuthPath("signIn")
+							if (!loading) {
+								setErrorWarning("")
+								setUserData({ ...userData, password: "" })
+								setAuthPath("signIn")
+							}
 						}}>
 						SignIn
 					</h2>
 					<h2
 						className={authPath === "signUp" && "active"}
 						onClick={() => {
-							setErrorWarning("")
-							setUserData({ ...userData, password: "" })
-							setAuthPath("signUp")
+							if (!loading) {
+								setErrorWarning("")
+								setUserData({ ...userData, password: "" })
+								setAuthPath("signUp")
+							}
 						}}>
 						SignUp
 					</h2>
 				</S.Header>
-				<S.Form onSubmit={handleSubmit}>
+				<S.Form onSubmit={handleSubmit} error={errorWarning}>
 					{authPath === "signUp" && (
 						<input
 							type="text"
 							placeholder="Name"
 							required
+							disabled={loading}
 							value={userData.name}
 							onChange={e => setUserData({ ...userData, name: e.target.value })}
 						/>
@@ -81,6 +90,7 @@ const Auth = () => {
 						type="email"
 						placeholder="E-mail"
 						required
+						disabled={loading}
 						pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
 						onChange={e => setUserData({ ...userData, email: e.target.value })}
 					/>
@@ -88,6 +98,7 @@ const Auth = () => {
 						type="password"
 						placeholder="Password"
 						required
+						disabled={loading}
 						minLength={authPath === "signUp" && 8}
 						value={userData.password}
 						onChange={e => setUserData({ ...userData, password: e.target.value })}
@@ -98,6 +109,7 @@ const Auth = () => {
 								type="password"
 								placeholder="Confirm password"
 								required
+								disabled={loading}
 								onChange={e => {
 									e.target.value !== userData.password
 										? setErrorWarning("Passwords don't match")
@@ -107,8 +119,10 @@ const Auth = () => {
 							/>
 							<input
 								type="text"
+								name="phone"
 								placeholder="Phone number"
 								required
+								disabled={loading}
 								value={userData.phone}
 								maxLength="15"
 								onChange={e => {
@@ -118,24 +132,35 @@ const Auth = () => {
 										"($1) $2"
 									)
 									e.target.value = e.target.value.replace(/(\d{5})(\d)/, "$1-$2")
-									setUserData({ ...userData, phone: e.target.value })
+									setUserData({
+										...userData,
+										phone: e.target.value,
+									})
 								}}
 							/>
 							<input
 								type="text"
 								placeholder="CEP"
 								required
+								disabled={loading}
 								value={userData.cep}
-								maxLength="8"
+								maxLength="9"
 								onChange={e => {
 									e.target.value = e.target.value.replace(/[^0-9]/g, "")
-									setUserData({ ...userData, cep: e.target.value })
+									e.target.value = e.target.value.replace(
+										/(\d{5})(\d{3})/,
+										"$1-$2"
+									)
+									setUserData({
+										...userData,
+										cep: e.target.value,
+									})
 								}}
 							/>
 						</>
 					)}
 					{errorWarning && <S.ErrorWarning>{errorWarning}</S.ErrorWarning>}
-					<button type="submit">
+					<button type="submit" disabled={loading}>
 						{loading ? <Loading /> : authPath === "signIn" ? "Sign In" : "Sign Up"}
 					</button>
 				</S.Form>
