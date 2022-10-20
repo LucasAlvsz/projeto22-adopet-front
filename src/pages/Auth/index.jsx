@@ -41,6 +41,8 @@ const Auth = () => {
 				.catch(({ response }) =>
 					response.data[0].split(" ")[0] === '"body.phone"'
 						? setErrorWarning("Invalid Phone")
+						: response.data[0].split(" ")[0] === '"body.cep"'
+						? setErrorWarning("Invalid CEP")
 						: setErrorWarning(response.data)
 				)
 				.finally(() => setLoading(false))
