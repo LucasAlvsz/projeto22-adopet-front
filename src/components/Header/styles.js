@@ -25,8 +25,13 @@ export const Options = styled.div`
 		justify-content: center;
 		border-radius: 20px;
 		background-color: #fff;
+		cursor: pointer;
+		transition: transform 0.2s;
 		:nth-child(2) {
 			${({ openMenu }) => openMenu && "border-radius: 20px 20px 0 0;"}
+		}
+		:hover {
+			transform: scale(1.05);
 		}
 	}
 `
@@ -42,6 +47,7 @@ export const Menu = styled.div`
 	align-items: center;
 	border-radius: 0 0 20px 20px;
 	background-color: #fff;
+
 	> span {
 		width: 100%;
 		height: 25px;
@@ -49,6 +55,9 @@ export const Menu = styled.div`
 		align-items: end;
 		justify-content: center;
 		cursor: pointer;
+		transition: transform 0.2s;
+		:hover {
+			transform: scale(1.05);
+		}
 	}
-	transition: all 2s ease;
 `

@@ -64,13 +64,13 @@ const Filters = ({ getPets }) => {
 			{apllyFilters?.type !== filters.type ||
 			apllyFilters?.vaccinated !== filters.vaccinated ||
 			apllyFilters?.location !== filters.location ? (
-				<p
+				<button
 					onClick={() => {
 						setApllyFilters(filters)
 						getPets(filters)
 					}}>
 					Ok
-				</p>
+				</button>
 			) : (
 				""
 			)}

@@ -9,13 +9,19 @@ export const MiniPetFrame = styled.div`
 	width: 165px;
 	height: 200px;
 	position: relative;
-	border-radius: 20px;
-	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+	border-radius: 15px;
+	filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+	transition: transform 0.2s;
 	> img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		border-radius: 20px;
+		border-radius: 15px;
+	}
+	:hover {
+		cursor: pointer;
+		transform: scale(1.02) translateY(-10px);
+		filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.25));
 	}
 `
 

@@ -3,6 +3,7 @@ import styled from "styled-components"
 export const HeaderIcons = {
 	width: "25px",
 	height: "25px",
+	cursor: "pointer",
 }
 
 export const Filters = styled.header`
@@ -19,22 +20,33 @@ export const Filters = styled.header`
 	gap: 15px;
 	padding: 0 20px;
 	background-color: white;
+	transition: transform 0.2s;
 	.selected {
-		width: 30px !important;
-		height: 30px !important;
-		background-color: #d9d9d9;
-		border-radius: 20px;
+		${HeaderIcons} {
+			transform: scale(1.1) translateY(-5%);
+			border-bottom: 2px solid #3ec96c;
+			border-radius: 50%;
+		}
+		transition: transform 0.2s;
 	}
-	p:nth-child(5) {
+	:hover {
+		transform: scale(1.05);
+	}
+
+	button {
 		width: 25px;
 		height: 25px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		color: blueviolet;
 		border-radius: 20px;
-		background-color: #d9d9d9;
+		background-color: #fff;
 		font-size: 13px;
+		cursor: pointer;
+		transition: transform 0.2s;
+		&:hover {
+			transform: scale(1.05);
+			background-color: #90dfaa;
+		}
 	}
-	transition: all 1s ease-in-out;
 `

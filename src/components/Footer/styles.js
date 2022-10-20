@@ -22,12 +22,11 @@ export const Footer = styled.footer`
 	box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
 	padding: 25px 35px;
 	background-color: #fff;
-	> span {
-		display: flex;
-		align-items: center;
-		gap: 5px;
-	}
 	.selected {
-		background-color: red;
+		${FooterIcons} {
+			transform: scale(1.1) translateY(-5%);
+			border-bottom: 2px solid #0070f3;
+			border-radius: 50%;
+		}
 	}
 `
