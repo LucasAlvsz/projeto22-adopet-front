@@ -3,6 +3,10 @@
 </p>
 <h1 align="center">
   Adopet ❤
+  </br>
+  <a href="https://www.adopet.tk" target="_blank">
+      <img src="https://img.shields.io/badge/Version-1.0.0-blue.svg" alt="Version">
+    </a>
 </h1>
 <div align="center">
   
