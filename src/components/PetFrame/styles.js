@@ -24,6 +24,10 @@ export const Content = styled.div`
 		object-fit: cover;
 		border-radius: 30px;
 	}
+
+	@media (min-width: 768px) {
+		max-width: 550px;
+	}
 `
 
 export const ContentInfos = styled.div`

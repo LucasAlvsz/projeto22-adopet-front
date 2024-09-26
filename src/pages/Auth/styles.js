@@ -105,6 +105,7 @@ export const ErrorWarning = styled.p`
 	z-index: 3;
 	font-weight: 700;
 	font-size: 15px;
+	-webkit-text-stroke: 0.5px #000;
 	line-height: 18px;
 	text-align: center;
 	color: tomato;

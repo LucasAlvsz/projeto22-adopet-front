@@ -11,7 +11,16 @@ import CatProfileIcon from "../../assets/icons/catIcon.png"
 
 import * as S from "./styles"
 
-const PetFrame = ({ id, petName, type, breed, mainPic, vaccinated, adress, setCurrentPet }) => {
+const PetFrame = ({
+	id,
+	petName,
+	type,
+	breed,
+	mainPic,
+	vaccinated,
+	address,
+	setCurrentPet,
+}) => {
 	const navigate = useNavigate()
 	const { addNotInterestedPet, addInterestedPet } = useContext(PetsContext)
 	return (
@@ -28,7 +37,7 @@ const PetFrame = ({ id, petName, type, breed, mainPic, vaccinated, adress, setCu
 					<S.InfoContainer>
 						<LocationIcon style={S.InfoIcon} />
 						<p>
-							{adress?.city.name} - {adress.state.name}
+							{address?.city} - {address.state}
 						</p>
 					</S.InfoContainer>
 					<S.InfoContainer>
@@ -42,11 +51,14 @@ const PetFrame = ({ id, petName, type, breed, mainPic, vaccinated, adress, setCu
 						addNotInterestedPet(id)
 							.then(() => setCurrentPet(+1))
 							.catch(({ response }) => console.log(response.data))
-					}>
+					}
+				>
 					❌<p>Nope</p>
 				</button>
 				<button onclick={() => navigate(`/profile/${id}`)}>
-					<img src={type === "dog" ? DogProfileIcon : CatProfileIcon} />
+					<img
+						src={type === "dog" ? DogProfileIcon : CatProfileIcon}
+					/>
 					<p>Profile</p>
 				</button>
 				<button
@@ -54,7 +66,8 @@ const PetFrame = ({ id, petName, type, breed, mainPic, vaccinated, adress, setCu
 						addInterestedPet(id)
 							.then(() => setCurrentPet(+1))
 							.catch(({ response }) => console.log(response.data))
-					}>
+					}
+				>
 					💗
 					<p>Like</p>
 				</button>

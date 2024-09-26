@@ -4,7 +4,7 @@ import { IoLocationSharp as LocationIcon } from "react-icons/io5"
 
 import * as S from "./styles"
 
-const MiniPetFrame = ({ id, petName, mainPic, adress }) => {
+const MiniPetFrame = ({ id, petName, mainPic, address }) => {
 	const navigate = useNavigate()
 	return (
 		<S.MiniPetFrame onClick={() => navigate(`/profile/${id}`)}>
@@ -15,7 +15,7 @@ const MiniPetFrame = ({ id, petName, mainPic, adress }) => {
 			<S.petInfo>
 				<p>
 					<LocationIcon style={S.InfoIcon} />
-					{adress.city.name} - {adress.state.name}
+					{address.city} - {address.state}
 				</p>
 			</S.petInfo>
 		</S.MiniPetFrame>

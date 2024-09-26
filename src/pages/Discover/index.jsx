@@ -47,11 +47,15 @@ const Discover = () => {
 								petName={pets[currentPet].name}
 								type={pets[currentPet].type}
 								age={pets[currentPet].age}
-								adress={pets[currentPet].ownerUser.adress}
+								address={pets[currentPet].ownerUser.address}
 								vaccinated={pets[currentPet].vaccinated}
 								breed={pets[currentPet].breed.name}
-								mainPic={pets[currentPet].petPictures[0].picture.url}
-								setCurrentPet={currentPic => setCurrentPet(currentPic + currentPet)}
+								mainPic={
+									pets[currentPet].petPictures[0].picture.url
+								}
+								setCurrentPet={currentPic =>
+									setCurrentPet(currentPic + currentPet)
+								}
 							/>
 						)
 					)) || <NothingHere />}

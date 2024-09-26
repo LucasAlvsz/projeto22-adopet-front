@@ -44,7 +44,7 @@ const Liked = () => {
 							id={pet.id}
 							petName={pet.name}
 							mainPic={pet.petPictures[0].picture.url}
-							adress={pet.ownerUser.adress}
+							address={pet.ownerUser.address}
 						/>
 					))
 				)) || <NothingHere />}

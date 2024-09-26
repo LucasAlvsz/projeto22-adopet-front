@@ -29,4 +29,12 @@ export const Footer = styled.footer`
 			border-radius: 50%;
 		}
 	}
+
+	@media (min-width: 768px) {
+		max-width: 768px;
+		left: 50%;
+		transform: translateX(-50%);
+		border-radius: 25px;
+		bottom: 15px;
+	}
 `

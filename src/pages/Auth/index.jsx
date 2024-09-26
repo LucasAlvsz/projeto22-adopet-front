@@ -33,18 +33,24 @@ const Auth = () => {
 				.catch(({ response }) => setErrorWarning(response.data))
 				.finally(() => setLoading(false))
 		} else if (authPath === "signUp") {
-			signUp(userData.name, userData.email, userData.password, userData.cep, userData.phone)
+			signUp(
+				userData.name,
+				userData.email,
+				userData.password,
+				userData.cep,
+				userData.phone
+			)
 				.then(() => {
 					setUserData({ ...userData, password: "" })
 					setAuthPath("signIn")
 				})
-				.catch(({ response }) =>
-					response.data[0].split(" ")[0] === '"body.phone"'
+				.catch(({ response }) => {
+					console.log(response.data)
+					response.data[0]?.split(" ")[0] === '"body.phone"'
 						? setErrorWarning("Invalid Phone")
-						: response.data[0].split(" ")[0] === '"body.cep"'
-						? setErrorWarning("Invalid CEP")
 						: setErrorWarning(response.data)
-				)
+					setErrorWarning(response.data.error.message)
+				})
 				.finally(() => setLoading(false))
 		}
 	}
@@ -62,7 +68,8 @@ const Auth = () => {
 								setUserData({ ...userData, password: "" })
 								setAuthPath("signIn")
 							}
-						}}>
+						}}
+					>
 						SignIn
 					</h2>
 					<h2
@@ -73,7 +80,8 @@ const Auth = () => {
 								setUserData({ ...userData, password: "" })
 								setAuthPath("signUp")
 							}
-						}}>
+						}}
+					>
 						SignUp
 					</h2>
 				</S.Header>
@@ -85,7 +93,12 @@ const Auth = () => {
 							required
 							disabled={loading}
 							value={userData.name}
-							onChange={e => setUserData({ ...userData, name: e.target.value })}
+							onChange={e =>
+								setUserData({
+									...userData,
+									name: e.target.value,
+								})
+							}
 						/>
 					)}
 					<input
@@ -94,7 +107,9 @@ const Auth = () => {
 						required
 						disabled={loading}
 						pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-						onChange={e => setUserData({ ...userData, email: e.target.value })}
+						onChange={e =>
+							setUserData({ ...userData, email: e.target.value })
+						}
 					/>
 					<input
 						type="password"
@@ -103,7 +118,12 @@ const Auth = () => {
 						disabled={loading}
 						minLength={authPath === "signUp" && 8}
 						value={userData.password}
-						onChange={e => setUserData({ ...userData, password: e.target.value })}
+						onChange={e =>
+							setUserData({
+								...userData,
+								password: e.target.value,
+							})
+						}
 					/>
 					{authPath === "signUp" && (
 						<>
@@ -114,9 +134,14 @@ const Auth = () => {
 								disabled={loading}
 								onChange={e => {
 									e.target.value !== userData.password
-										? setErrorWarning("Passwords don't match")
+										? setErrorWarning(
+												"Passwords don't match"
+										  )
 										: setErrorWarning("")
-									setUserData({ ...userData, confirmPassword: e.target.value })
+									setUserData({
+										...userData,
+										confirmPassword: e.target.value,
+									})
 								}}
 							/>
 							<input
@@ -128,12 +153,18 @@ const Auth = () => {
 								value={userData.phone}
 								maxLength="15"
 								onChange={e => {
-									e.target.value = e.target.value.replace(/[^0-9]/g, "")
+									e.target.value = e.target.value.replace(
+										/[^0-9]/g,
+										""
+									)
 									e.target.value = e.target.value.replace(
 										/(\d{2})(\d)/,
 										"($1) $2"
 									)
-									e.target.value = e.target.value.replace(/(\d{5})(\d)/, "$1-$2")
+									e.target.value = e.target.value.replace(
+										/(\d{5})(\d)/,
+										"$1-$2"
+									)
 									setUserData({
 										...userData,
 										phone: e.target.value,
@@ -148,7 +179,10 @@ const Auth = () => {
 								value={userData.cep}
 								maxLength="9"
 								onChange={e => {
-									e.target.value = e.target.value.replace(/[^0-9]/g, "")
+									e.target.value = e.target.value.replace(
+										/[^0-9]/g,
+										""
+									)
 									e.target.value = e.target.value.replace(
 										/(\d{5})(\d{3})/,
 										"$1-$2"
@@ -161,13 +195,26 @@ const Auth = () => {
 							/>
 						</>
 					)}
-					{errorWarning && <S.ErrorWarning>{errorWarning}</S.ErrorWarning>}
+					{errorWarning && (
+						<S.ErrorWarning>{errorWarning}</S.ErrorWarning>
+					)}
 					<button type="submit" disabled={loading}>
-						{loading ? <Loading /> : authPath === "signIn" ? "Sign In" : "Sign Up"}
+						{loading ? (
+							<Loading />
+						) : authPath === "signIn" ? (
+							"Sign In"
+						) : (
+							"Sign Up"
+						)}
 					</button>
 				</S.Form>
 				<S.AnimationContainer>
-					<Player autoplay loop src={adopt} style={{ height: "100%", width: "100%" }} />
+					<Player
+						autoplay
+						loop
+						src={adopt}
+						style={{ height: "100%", width: "100%" }}
+					/>
 				</S.AnimationContainer>
 			</S.Wrapper>
 		</main>

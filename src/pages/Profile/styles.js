@@ -1,5 +1,18 @@
 import styled from "styled-components"
 
+export const Wrapper = styled.div`
+	width: 100%;
+	height: 100vh;
+	display: flex;
+
+	@media (min-width: 768px) {
+		max-width: 1068px;
+		padding: 0 50px;
+		align-items: center;
+		gap: 50px;
+	}
+`
+
 export const PictureOptions = {
 	width: "27px",
 	height: "27px",
@@ -10,12 +23,20 @@ export const PictureOptions = {
 export const Pictures = styled.div`
 	width: 100%;
 	height: 300px;
-	background-color: green;
 	position: relative;
+
 	> img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+	}
+	@media (min-width: 768px) {
+		width: 1280px;
+		height: 500px;
+
+		> img {
+			border-radius: 38px;
+		}
 	}
 `
 
@@ -23,11 +44,16 @@ export const Options = styled.div`
 	width: 100%;
 	height: auto;
 	position: absolute;
-	top: 35%;
-	justify-content: ${({ firstImage }) => (firstImage ? "flex-end" : "space-between")};
+	top: 33%;
+	justify-content: ${({ firstImage }) =>
+		firstImage ? "flex-end" : "space-between"};
 	display: flex;
 	z-index: 1;
 	padding: 0 10px;
+	@media (min-width: 768px) {
+		cursor: pointer;
+		top: 50%;
+	}
 `
 
 export const Infos = styled.div`
@@ -43,6 +69,14 @@ export const Infos = styled.div`
 	background-color: #f2f4f3;
 	::-webkit-scrollbar {
 		width: 5px;
+	}
+
+	@media (min-width: 768px) {
+		max-height: 400px;
+		position: relative;
+		top: 0;
+		background-color: white;
+		border-radius: 38px;
 	}
 `
 
@@ -183,5 +217,9 @@ export const Footer = styled.footer`
 		margin-top: 15px;
 		font-family: "DynaPuff", cursive;
 		color: #2d3051;
+	}
+
+	@media (min-width: 768px) {
+		position: relative;
 	}
 `

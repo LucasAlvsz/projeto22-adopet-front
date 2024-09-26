@@ -14,5 +14,11 @@ export const Discover = styled.div`
 export const Container = styled.div`
 	width: 100%;
 	height: 75%;
-	margin-bottom: 65px;
+
+	@media (min-width: 768px) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 65px;
+	}
 `
