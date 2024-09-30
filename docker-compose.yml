@@ -1,0 +1,8 @@
+services:
+  adopet-web:
+    build:
+      context: .
+    ports:
+      - "3000:4173"
+    env_file:
+      - .env
