@@ -28,7 +28,7 @@ const Profile = () => {
 			.catch(({ response }) => console.log(response.data))
 	}, [])
 
-	const handdleAdopt = () => {
+	const handleAdopt = () => {
 		const phone = petProfile.ownerUser.phone.replace(/\D/g, "")
 		const message =
 			"Olá, gostaria de adotar o pet " +
@@ -120,7 +120,7 @@ const Profile = () => {
 					</S.About>
 					<br />
 					<S.Footer>
-						<button onClick={handdleAdopt}>Adopt Me</button>
+						<button onClick={handleAdopt}>Adopt Me</button>
 					</S.Footer>
 				</S.Infos>
 			</S.Wrapper>

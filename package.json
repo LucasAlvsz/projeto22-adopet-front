@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-	"start": "vite preview"
+	  "start": "vite preview"
   },
   "dependencies": {
     "@lottiefiles/react-lottie-player": "^3.4.7",
@@ -24,3 +24,4 @@
     "vite": "^3.0.0"
   }
 }
+
