@@ -1,18 +1,7 @@
-import { defineConfig } from "vite"
-import preact from "@preact/preset-vite"
-import svgr from "@honkhonk/vite-plugin-svgr"
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react-swc'
 
-// https://vitejs.dev/config/
-// prettier-ignore
+// https://vite.dev/config/
 export default defineConfig({
-	plugins: [svgr(), preact()],
-	alias: {
-		"react-dom/test-utils": "preact/test-utils",
-		"react/jsx-runtime": "preact/jsx-runtime",
-		"react": "preact/compat",
-		"react-dom": "preact/compat",
-	},
-	esbuild: {
-		logOverride: { "this-is-undefined-in-esm": "silent" },
-	},
+  plugins: [react()],
 })
