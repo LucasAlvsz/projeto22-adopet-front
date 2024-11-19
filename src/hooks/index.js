@@ -1,4 +1,4 @@
-import useLocalStorage from './useLocalStorage'
-import useForm from './useForm'
+import UseLocalStorage from './useLocalStorage'
+import UseForm from './useForm'
 
-export { useLocalStorage, useForm }
+export { UseLocalStorage, UseForm }

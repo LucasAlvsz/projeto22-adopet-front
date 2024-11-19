@@ -1,42 +1,36 @@
-// useSocket.js
 import { useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
 
 const useSocket = (token) => {
-  const socketRef = useRef();
+  const socketRef = useRef(null);
 
   useEffect(() => {
-    socketRef.current = io('http://localhost:3000', {
+    const socket = io('http://localhost:3000', {
       auth: {
         token: token,
       },
     });
+    socketRef.current = socket;
 
-    socketRef.current.on("connect", () => {
+    socket.on("connect", () => {
       console.log("Conectado");
     });
 
-    socketRef.current.on("disconnect", () => {
+    socket.on("disconnect", () => {
       console.log("Desconectado");
     });
 
-    socketRef.current.on("connect_error", (error) => {
+    socket.on("connect_error", (error) => {
       console.log("Erro de conexão: ", error);
     });
 
     return () => {
-      socketRef.current.disconnect();
+      socket.disconnect();
+      socketRef.current = null;
     };
   }, [token]);
 
-//   const emit = (event, data) => {
-//     socketRef.current.emit(event, data);
-//   };
-
-//   const on = (event, callback) => {
-//     socketRef.current.on(event, callback);
-//   };
-  return socketRef.current;
+  return socketRef;
 };
 
 export default useSocket;

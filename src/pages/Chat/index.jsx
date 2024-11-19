@@ -11,11 +11,22 @@ import useSocket from "../../hooks/useSocket";
 const Chat = () => {
   //   const [isConnected, setIsConnected] = useState(socket.connected);
   const { user } = useContext(AuthContext);
-  const socket = useSocket(user.token);
+  const socketRef = useSocket(user.token);
 
   useEffect(() => {
-    if (socket) socket.emit("message", { userId: user.id });
-  }, []);
+    if (socketRef.current) {
+      const socket = socketRef.current;
+      console.log("Socket:", socket);
+
+      socket.on("server-message", (message) => {
+        console.log("Mensagem do servidor:", message);
+      });
+
+      return () => {
+        socket.off("server-message");
+      };
+    }
+  }, [socketRef]);
   return (
     <main>
       <Header />
@@ -24,7 +35,7 @@ const Chat = () => {
       <p
         onClick={() => {
           console.log("teste");
-          socket.emit("message", { data: "data" });
+          socketRef.current.emit("message", { data: "data" });
         }}
       >
         teste

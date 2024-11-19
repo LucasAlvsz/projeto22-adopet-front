@@ -6,14 +6,14 @@ import axios from "axios";
 import * as S from "./styles";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import { useForm } from "../../hooks";
+import { UseForm } from "../../hooks";
 import { PetsContext } from "../../providers/PetsProvider";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
   const { getBreeds, getPetTypes } = useContext(PetsContext);
 
-  const [form, , handleForm] = useForm();
+  const [form, , handleForm] = UseForm();
   const [breeds, setBreeds] = useState([]);
   const [petTypes, setPetTypes] = useState([]);
   const [error, setError] = useState(false);
@@ -41,7 +41,7 @@ const Home = () => {
 
     try {
       const response = await axios.post(
-        "https://special-goggles-p5jwqjx65x6275jx-3000.app.github.dev/pets/create",
+        "import.meta.env.VITE_API_URL/pets/create",
         formData,
         {
           headers: {

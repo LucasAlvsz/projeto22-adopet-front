@@ -14,7 +14,7 @@ export const PetsProvider = ({ children }) => {
   const getPets = (filters) => {
     const formattedFilters = formatFilters(filters);
     return axios.get(
-      `${"https://special-goggles-p5jwqjx65x6275jx-3000.app.github.dev"}/pets?${formattedFilters}`,
+      `${import.meta.env.VITE_API_URL}/pets?${formattedFilters}`,
       {
         headers: {
           Authorization: `Bearer ${user.token}`,
@@ -24,20 +24,17 @@ export const PetsProvider = ({ children }) => {
   };
 
   const getProfileById = (petId) => {
-    return axios.get(
-      `${"https://special-goggles-p5jwqjx65x6275jx-3000.app.github.dev"}/pets/profile/${petId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
+    return axios.get(`${import.meta.env.VITE_API_URL}/pets/profile/${petId}`, {
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
   };
 
   const getLikedPets = (filters) => {
     const formatedFilters = formatFilters(filters);
     return axios.get(
-      `${"https://special-goggles-p5jwqjx65x6275jx-3000.app.github.dev"}/pets/interested?${formatedFilters}`,
+      `${import.meta.env.VITE_API_URL}/pets/interested?${formatedFilters}`,
       {
         headers: {
           Authorization: `Bearer ${user.token}`,
@@ -48,7 +45,7 @@ export const PetsProvider = ({ children }) => {
 
   const addNotInterestedPet = (petId) => {
     return axios.post(
-      `${"https://special-goggles-p5jwqjx65x6275jx-3000.app.github.dev"}/pets/${petId}/not-interested`,
+      `${import.meta.env.VITE_API_URL}/pets/${petId}/not-interested`,
       "",
       {
         headers: {
@@ -60,7 +57,7 @@ export const PetsProvider = ({ children }) => {
 
   const addInterestedPet = (petId) => {
     return axios.post(
-      `${"https://special-goggles-p5jwqjx65x6275jx-3000.app.github.dev"}/pets/${petId}/interested`,
+      `${import.meta.env.VITE_API_URL}/pets/${petId}/interested`,
       "",
       {
         headers: {
@@ -73,7 +70,7 @@ export const PetsProvider = ({ children }) => {
   const getBreeds = (petTypeId) => {
     const queryString = petTypeId ? `?type[id]=${petTypeId}` : "";
     return axios.get(
-      `${"https://special-goggles-p5jwqjx65x6275jx-3000.app.github.dev"}/pets/breeds${queryString}`,
+      `${import.meta.env.VITE_API_URL}/pets/breeds${queryString}`,
       {
         headers: {
           Authorization: `Bearer ${user.token}`,
@@ -83,14 +80,11 @@ export const PetsProvider = ({ children }) => {
   };
 
   const getPetTypes = () => {
-    return axios.get(
-      `${"https://special-goggles-p5jwqjx65x6275jx-3000.app.github.dev"}/pets/types`,
-      {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      }
-    );
+    return axios.get(`${import.meta.env.VITE_API_URL}/pets/types`, {
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
   };
 
   return (
