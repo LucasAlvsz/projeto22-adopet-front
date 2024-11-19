@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import { useLocalStorage } from "../hooks";
 
 export const AuthContext = createContext();
